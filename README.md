@@ -153,7 +153,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Connect
 
-- **Portfolio**: 
+- **Portfolio**: https://github.com/Nivpatel23
 - **LinkedIn**: www.linkedin.com/in/niv-patel1999
 - **Email**: nivwork23@gmai.com
 
