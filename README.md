@@ -1,5 +1,3 @@
-# ecommerce-sales-dashboard
-Interactive Power BI dashboard analyzing e-commerce sales trends, product performance, and customer insights
 #  E-commerce Sales Dashboard & Analysis
 
 [![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-yellow)](powerbi/)
