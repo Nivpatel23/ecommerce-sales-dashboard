@@ -4,7 +4,7 @@ Interactive Power BI dashboard analyzing e-commerce sales trends, product perfor
 
 [![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-yellow)](powerbi/)
 [![Excel](https://img.shields.io/badge/Excel-Analysis-green)](excel/)
-[![Live Demo](https://img.shields.io/badge/Demo-Live-blue)](https://yourusername.github.io/ecommerce-sales-dashboard/)
+[![Live Demo](https://img.shields.io/badge/Demo-Live-blue)](https://Nivpatel23.github.io/ecommerce-sales-dashboard/)
 
 > Interactive Power BI dashboard analyzing 18,500+ e-commerce transactions to uncover sales trends, product performance, and customer insights.
 
@@ -22,7 +22,7 @@ This project demonstrates end-to-end business intelligence capabilities by devel
 
 ##  Quick Links
 
-**[Live Interactive Demo](https://yourusername.github.io/ecommerce-sales-dashboard/)** - View dashboard online
+**[Live Interactive Demo](https://nivpatel23.github.io/ecommerce-sales-dashboard/)** - View dashboard online
 **[Power BI File](powerbi/Ecommerce_Dashboard.pbix)** - Download .pbix file
 **[Full Documentation](docs/project_overview.md)** - Detailed project writeup
 **[Business Insights](docs/insights_and_findings.md)** - Key findings
