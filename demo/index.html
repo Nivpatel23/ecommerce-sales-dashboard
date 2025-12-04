@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive E-commerce Sales Dashboard - Power BI Project Demo">
+    <meta name="author" content="Your Name">
+    <title>E-commerce Sales Dashboard | Interactive Demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .hero {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            opacity: 0.95;
+            margin-bottom: 25px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .hero-btn {
+            background: white;
+            color: #667eea;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .hero-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 40px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .header h2 {
+            color: #667eea;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .info-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .info-banner i {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+        
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 28px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .metric-card:nth-child(2) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .metric-card:nth-child(3) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .metric-card:nth-child(4) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        
+        .metric-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+        
+        .metric-label {
+            font-size: 13px;
+            opacity: 0.95;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .metric-value {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .metric-change {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        
+        .filter-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-section label {
+            font-weight: 600;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .filter-section select {
+            padding: 10px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            background: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+        
+        .filter-section select:hover {
+            border-color: #667eea;
+        }
+        
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .chart-container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+            border: 1px solid #e8e8e8;
+            transition: box-shadow 0.3s;
+        }
+        
+        .chart-container:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .chart-container.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .chart-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        canvas {
+            max-height: 320px;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            text-align: center;
+            color: #666;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+        
+        .footer-link:hover {
+            color: #764ba2;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard {
+                padding: 20px;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1><i class="fas fa-chart-line"></i> E-commerce Sales Dashboard</h1>
+        <p>Interactive Power BI Project Demo | 18,500+ Transactions Analyzed</p>
+        <div class="hero-buttons">
+            <a href="../" class="hero-btn">
+                <i class="fab fa-github"></i> View on GitHub
+            </a>
+            <a href="../powerbi/Ecommerce_Dashboard.pbix" class="hero-btn">
+                <i class="fas fa-download"></i> Download Power BI File
+            </a>
+            <a href="../docs/project_overview.md" class="hero-btn">
+                <i class="fas fa-book"></i> Read Documentation
+            </a>
+        </div>
+    </div>
+    
+    <div class="dashboard">
+        <div class="header">
+            <h2>Sales Performance Analytics</h2>
+            <p>Interactive Dashboard | 2023-2024 Performance Overview</p>
+        </div>
+        
+        <div class="info-banner">
+            <i class="fas fa-info-circle"></i>
+            <p><strong>This is an interactive demo</strong> showing the dashboard design. Download the .pbix file for full Power BI functionality with filtering, drill-through, and cross-filtering features.</p>
+        </div>
+        
+        <div class="filter-section">
+            <div class="filter-group">
+                <label><i class="fas fa-calendar"></i> Year:</label>
+                <select id="yearFilter">
+                    <option value="all">All Years</option>
+                    <option value="2024" selected>2024</option>
+                    <option value="2023">2023</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label><i class="fas fa-calendar-week"></i> Quarter:</label>
+                <select id="quarterFilter">
+                    <option value="all" selected>All Quarters</option>
+                    <option value="Q1">Q1</option>
+                    <option value="Q2">Q2</option>
+                    <option value="Q3">Q3</option>
+                    <option value="Q4">Q4</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label><i class="fas fa-map-marker-alt"></i> Region:</label>
+                <select id="regionFilter">
+                    <option value="all" selected>All Regions</option>
+                    <option value="North">North</option>
+                    <option value="South">South</option>
+                    <option value="East">East</option>
+                    <option value="West">West</option>
+                    <option value="Central">Central</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-icon"><i class="fas fa-dollar-sign"></i></div>
+                <div class="metric-label">Total Revenue</div>
+                <div class="metric-value">$2.8M</div>
+                <div class="metric-change"><i class="fas fa-arrow-up"></i> 23% vs last year</div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-icon"><i class="fas fa-shopping-cart"></i></div>
+                <div class="metric-label">Total Orders</div>
+                <div class="metric-value">18,542</div>
+                <div class="metric-change"><i class="fas fa-arrow-up"></i> 15% vs last year</div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-icon"><i class="fas fa-receipt"></i></div>
+                <div class="metric-label">Avg Order Value</div>
+                <div class="metric-value">$151</div>
+                <div class="metric-change"><i class="fas fa-arrow-up"></i> 7% vs last year</div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-icon"><i class="fas fa-users"></i></div>
+                <div class="metric-label">Unique Customers</div>
+                <div class="metric-value">3,247</div>
+                <div class="metric-change"><i class="fas fa-arrow-up"></i> 18% vs last year</div>
+            </div>
+        </div>
+        
+        <div class="charts-grid">
+            <div class="chart-container">
+                <div class="chart-title">
+                    <i class="fas fa-chart-pie"></i>
+                    Sales by Category
+                </div>
+                <canvas id="categoryChart"></canvas>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-title">
+                    <i class="fas fa-map-marked-alt"></i>
+                    Regional Performance
+                </div>
+                <canvas id="regionChart"></canvas>
+            </div>
+            
+            <div class="chart-container full-width">
+                <div class="chart-title">
+                    <i class="fas fa-chart-area"></i>
+                    Monthly Sales Trend
+                </div>
+                <canvas id="trendChart"></canvas>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-title">
+                    <i class="fas fa-star"></i>
+                    Top 5 Products
+                </div>
+                <canvas id="productChart"></canvas>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-title">
+                    <i class="fas fa-user-friends"></i>
+                    Customer Demographics
+                </div>
+                <canvas id="demographicsChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>E-commerce Sales Dashboard Project</strong></p>
+            <p>Built with Power BI, Excel, Python | Demonstrating Business Intelligence & Data Analysis Skills</p>
+            <div class="footer-links">
+                <a href="../" class="footer-link">
+                    <i class="fab fa-github"></i> GitHub Repository
+                </a>
+                <a href="../docs/project_overview.md" class="footer-link">
+                    <i class="fas fa-file-alt"></i> Full Documentation
+                </a>
+                <a href="../powerbi/powerbi_guide.md" class="footer-link">
+                    <i class="fas fa-book-open"></i> Building Guide
+                </a>
+                <a href="mailto:your.email@example.com" class="footer-link">
+                    <i class="fas fa-envelope"></i> Contact
+                </a>
+            </div>
+            <p style="margin-top: 20px; font-size: 14px;">© 2024 Niv Patel. Licensed under MIT.</p>
+        </div>
+    </div>
+    
+    <script>
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    labels: {
+                        padding: 15,
+                        font: {
+                            size: 12
+                        }
+                    }
+                }
+            }
+        };
+        
+        // Category Chart
+        const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+        new Chart(categoryCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Electronics', 'Clothing', 'Home & Garden', 'Sports', 'Books'],
+                datasets: [{
+                    data: [847200, 412300, 389100, 356800, 145600],
+                    backgroundColor: ['#667eea', '#f5576c', '#43e97b', '#f093fb', '#4facfe'],
+                    borderWidth: 2,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                ...chartOptions,
+                plugins: {
+                    ...chartOptions.plugins,
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = ((context.parsed / total) * 100).toFixed(1);
+                                return context.label + ': $' + context.parsed.toLocaleString() + ' (' + percentage + '%)';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Region Chart
+        const regionCtx = document.getElementById('regionChart').getContext('2d');
+        new Chart(regionCtx, {
+            type: 'bar',
+            data: {
+                labels: ['North', 'South', 'East', 'West', 'Central'],
+                datasets: [{
+                    label: 'Revenue ($)',
+                    data: [587000, 523000, 489000, 467000, 385000],
+                    backgroundColor: '#667eea',
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                ...chartOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + (value/1000) + 'K';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Trend Chart
+        const trendCtx = document.getElementById('trendChart').getContext('2d');
+        new Chart(trendCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: '2024',
+                    data: [178000, 165000, 189000, 176000, 195000, 188000, 225000, 234000, 198000, 215000, 287000, 301000],
+                    borderColor: '#667eea',
+                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                    borderWidth: 3
+                }, {
+                    label: '2023',
+                    data: [145000, 138000, 152000, 148000, 159000, 155000, 187000, 195000, 168000, 178000, 234000, 245000],
+                    borderColor: '#e0e0e0',
+                    backgroundColor: 'rgba(224, 224, 224, 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                ...chartOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + (value/1000) + 'K';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Product Chart
+        const productCtx = document.getElementById('productChart').getContext('2d');
+        new Chart(productCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Laptop', 'Smart Watch', 'Wireless Headphones', 'Bicycle', 'Vacuum Cleaner'],
+                datasets: [{
+                    label: 'Revenue ($)',
+                    data: [245000, 198000, 167000, 145000, 123000],
+                    backgroundColor: ['#667eea', '#764ba2', '#f093fb', '#f5576c', '#43e97b'],
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                ...chartOptions,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + (value/1000) + 'K';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Demographics Chart
+        const demographicsCtx = document.getElementById('demographicsChart').getContext('2d');
+        new Chart(demographicsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['18-25', '26-35', '36-45', '46-55', '56+'],
+                datasets: [{
+                    label: 'Male',
+                    data: [234000, 456000, 387000, 298000, 167000],
+                    backgroundColor: '#4facfe'
+                }, {
+                    label: 'Female',
+                    data: [267000, 498000, 412000, 323000, 189000],
+                    backgroundColor: '#f093fb'
+                }, {
+                    label: 'Other',
+                    data: [45000, 87000, 76000, 54000, 32000],
+                    backgroundColor: '#43e97b'
+                }]
+            },
+            options: {
+                ...chartOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + (value/1000) + 'K';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
