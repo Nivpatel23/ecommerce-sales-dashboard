@@ -94,7 +94,7 @@ This project demonstrates end-to-end business intelligence capabilities by devel
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/ecommerce-sales-dashboard.git
+git clone https://github.com/Nivpatel23/ecommerce-sales-dashboard.git
 cd ecommerce-sales-dashboard
 ```
 
