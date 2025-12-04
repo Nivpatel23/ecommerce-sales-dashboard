@@ -1,0 +1,31 @@
+# Power BI
+*.pbix~
+*.pbix.tmp
+
+# Excel
+~$*.xlsx
+~$*.xls
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data (if large)
+# Uncomment if your CSV gets too large
+# *.csv
