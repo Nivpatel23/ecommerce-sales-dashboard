@@ -20,7 +20,7 @@ This project demonstrates end-to-end business intelligence capabilities by devel
 
 ##  Quick Links
 
-**[Live Interactive Demo](https://nivpatel23.github.io/ecommerce-sales-dashboard/)** - View dashboard online
+**[Live Interactive Demo](https://nivpatel23.github.io/ecommerce-sales-dashboard/demo/index.html)** - View dashboard online
 **[Power BI File](powerbi/Ecommerce_Dashboard.pbix)** - Download .pbix file
 **[Full Documentation](docs/project_overview.md)** - Detailed project writeup
 **[Business Insights](docs/insights_and_findings.md)** - Key findings
