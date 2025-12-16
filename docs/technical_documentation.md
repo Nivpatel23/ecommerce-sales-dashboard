@@ -877,8 +877,6 @@ def validate_data(df):
 
 ## Support & Contact
 
-**Technical Issues**: [Create GitHub Issue]  
-**Feature Requests**: [GitHub Discussions]  
 **General Inquiries**: nivwork23@gmail.com
 
 **Documentation Version**: 1.0  
