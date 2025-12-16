@@ -519,7 +519,8 @@ The project showcases proficiency in modern BI tools, analytical thinking, and b
 **Date**: December 2024  
 **Tools**: Power BI, Excel, Python, GitHub  
 **Repository**: https://github.com/Nivpatel23?tab=repositories
-**Live Demo**: https://github.com/Nivpatel23/ecommerce-sales-dashboard/tree/6eae311550e16ae4a3dc7b1ae9036bbf0349e1be/demo
+
+**Live Demo**: https://nivpatel23.github.io/ecommerce-sales-dashboard/demo/index.html
 
 **Contact**: nivwork23@gmail.com  
 **LinkedIn**:  www.linkedin.com/in/niv-patel1999
