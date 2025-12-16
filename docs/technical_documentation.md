@@ -1,4 +1,4 @@
-# 🔧 Technical Documentation - E-commerce Sales Dashboard
+#  Technical Documentation - E-commerce Sales Dashboard
 
 ## System Architecture Overview
 
@@ -6,7 +6,7 @@ This document provides comprehensive technical specifications for the e-commerce
 
 ---
 
-## 📊 Data Architecture
+##  Data Architecture
 
 ### Data Flow Diagram
 
@@ -79,7 +79,7 @@ ecommerce_sales_data (Fact Table)
 
 ---
 
-## 🐍 Data Generation (Python)
+##  Data Generation (Python)
 
 ### Technology Stack
 
@@ -168,7 +168,7 @@ assert df['Date'].max() <= '2024-12-31'
 
 ---
 
-## 📊 Power BI Implementation
+##  Power BI Implementation
 
 ### Data Import & Transformation
 
@@ -347,10 +347,10 @@ IF([Product Revenue Rank] <= 10, "Yes", "No")
 Growth Status = 
 SWITCH(
     TRUE(),
-    [YoY Growth %] >= 20, "🚀 Excellent",
-    [YoY Growth %] >= 10, "✅ Good",
-    [YoY Growth %] >= 0, "➡️ Stable",
-    "📉 Declining"
+    [YoY Growth %] >= 20, " Excellent",
+    [YoY Growth %] >= 10, " Good",
+    [YoY Growth %] >= 0, " Stable",
+    " Declining"
 )
 ```
 
@@ -377,7 +377,7 @@ Compression ratio: 5.6:1
 
 ---
 
-## 📈 Visualization Design
+##  Visualization Design
 
 ### Design System
 
@@ -454,7 +454,7 @@ Custom: Mini dashboard with:
 
 ---
 
-## 🌐 Web Demo (HTML/JavaScript)
+## Web Demo (HTML/JavaScript)
 
 ### Technology Stack
 
@@ -561,7 +561,7 @@ const categoryChart = new Chart(ctx, {
 
 ---
 
-## 📁 File Specifications
+##  File Specifications
 
 ### CSV Export
 
@@ -630,7 +630,7 @@ Sheet7: Dashboard (Formulas + Charts)
 
 ---
 
-## 🔧 Development Environment
+##  Development Environment
 
 ### Local Setup
 
@@ -672,7 +672,7 @@ numpy>=1.23.0
 
 ---
 
-## 🚀 Deployment
+##  Deployment
 
 ### GitHub Repository
 
@@ -729,7 +729,7 @@ Thumbs.db
 
 ---
 
-## 🧪 Testing & Validation
+##  Testing & Validation
 
 ### Data Quality Tests
 
@@ -753,7 +753,7 @@ def validate_data(df):
     assert ((df['Unit_Price'] * df['Quantity'] - df['Total_Sales']).abs() < 0.01).all(), \
         "Total_Sales calculation error"
     
-    print("✅ All data quality checks passed")
+    print(" All data quality checks passed")
 ```
 
 ### Dashboard Testing
@@ -780,7 +780,7 @@ def validate_data(df):
 
 ---
 
-## 📊 Monitoring & Maintenance
+##  Monitoring & Maintenance
 
 ### Performance Metrics
 
@@ -815,13 +815,13 @@ def validate_data(df):
 
 ---
 
-## 🔒 Security Considerations
+##  Security Considerations
 
 **Data Privacy**:
-- ✅ All data is synthetic (no real customer information)
-- ✅ No PII (Personally Identifiable Information)
-- ✅ Safe for public repository
-- ✅ No API keys or credentials in code
+-  All data is synthetic (no real customer information)
+-  No PII (Personally Identifiable Information)
+-  Safe for public repository
+-  No API keys or credentials in code
 
 **Best Practices Followed**:
 - No hardcoded paths
@@ -831,7 +831,7 @@ def validate_data(df):
 
 ---
 
-## 📝 Change Log
+##  Change Log
 
 ### Version 1.0 (December 2024)
 - Initial release
@@ -849,7 +849,7 @@ def validate_data(df):
 
 ---
 
-## 🆘 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
